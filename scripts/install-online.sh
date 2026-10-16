@@ -64,7 +64,7 @@ install_node(){
 
 # ---------- 2) Tool ----------
 install_tool(){
-  if command -v wormagent >/dev/null 2>&1; then ok "الأداة موجودة بالفعل ($(wormagent --version 2>/dev/null || echo present))"; return; fi
+  if command -v wormagent >/dev/null 2>&1; then info "نسخة حالية: $(wormagent --version 2>/dev/null || echo present) — بنفحص/نثبت الإصدار المنشور"; fi
   local urls=("$WORMAGENT_TARBALL_URL")
   [ -n "${WORMAGENT_TARBALL_MIRROR:-}" ] && [ "$WORMAGENT_TARBALL_MIRROR" != "$WORMAGENT_TARBALL_URL" ] && urls+=("$WORMAGENT_TARBALL_MIRROR")
   # Termux/Android: تبعيات (زي @lancedb/lancedb) مش بتدعم android → بنتخطّى
@@ -269,6 +269,12 @@ main(){
   need_node || install_node
   ok "Node $(node -v)"
   install_tool
+  if [ -f "$STATE_DIR/wormagent.json" ] && [ "${WORMAGENT_RECONFIGURE:-0}" != "1" ]; then
+    info "تثبيت موجود — تم تحديث الحزمة مع الحفاظ على الإعدادات والمفاتيح"
+    start_gateway
+    ok "التحديث اكتمل. لإعادة الإعداد من الصفر استخدم WORMAGENT_RECONFIGURE=1"
+    return
+  fi
   ask_token
   ask_owner
   ask_model_key

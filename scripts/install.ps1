@@ -52,7 +52,7 @@ function Install-Node {
 
 # ---------- 2) Tool ----------
 function Install-Tool {
-  if (Get-Command wormagent -ErrorAction SilentlyContinue) { Ok "الأداة موجودة بالفعل"; return }
+  if (Get-Command wormagent -ErrorAction SilentlyContinue) { Info "نسخة مثبتة موجودة — بنفحص/نثبت الإصدار المنشور" }
   $urls = @($TarballUrl)
   if ($TarballMirror -and $TarballMirror -ne $TarballUrl) { $urls += $TarballMirror }
   $installed = $false
@@ -233,6 +233,13 @@ function Main {
   Banner
   if (Test-Node) { Ok "Node $(& node -v)" } else { Install-Node; Ok "Node $(& node -v)" }
   Install-Tool
+  $existingConfig = Join-Path $StateDir "wormagent.json"
+  if ((Test-Path $existingConfig) -and $env:WORMAGENT_RECONFIGURE -ne "1") {
+    Info "تثبيت موجود — تم تحديث الحزمة مع الحفاظ على الإعدادات والمفاتيح"
+    Start-Gateway
+    Ok "التحديث اكتمل. لإعادة الإعداد من الصفر استخدم WORMAGENT_RECONFIGURE=1"
+    return
+  }
   Ask-Token
   Ask-Owner
   Ask-ModelKey
