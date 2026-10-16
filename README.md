@@ -26,6 +26,27 @@ If you want a personal, single-user AI that's local, fast, always-on, and stubbo
 
 ---
 
+## ⚡ Quick start (this repo)
+
+شغّل كل حاجة (Gateway + مساحة الوكيل + خدمة systemd) في كام أمر:
+
+```bash
+git clone https://github.com/BlackXV2vip/wormagent.git && cd wormagent
+
+make install          # npm i -g wormagent
+make config           # ينسخ قالب الإعداد — املا كل قيمة REQUIRED:
+make workspace        # يثبّت مساحة الوكيل (الشخصية)
+make service-install  # خدمة systemd (enable --now)
+make verify           # curl /health
+```
+
+أو كل ده بأمر واحد: `bash scripts/install.sh`
+
+> 📖 **الدليل الكامل → [RUNBOOK.md](RUNBOOK.md)** · تفاصيل النشر → [deploy/README.md](deploy/README.md)
+> 🧰 أوامر مختصرة: `make help`
+
+---
+
 ## Install
 
 Runtime: **Node ≥22**
