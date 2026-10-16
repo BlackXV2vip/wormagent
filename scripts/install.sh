@@ -67,7 +67,13 @@ fi
 [ -n "$BOT_TOKEN" ] || { echo "Bot token is required." >&2; exit 1; }
 [ -n "$TG_ID" ]     || { echo "Telegram id is required." >&2; exit 1; }
 case "$TG_ID" in *[!0-9]*) echo "Telegram id must be numeric." >&2; exit 1;; esac
-ok "Inputs captured"
+
+c "Validating temporary credentials"
+BOT_CHECK="$(curl -fsS --max-time 20 "https://api.telegram.org/bot${BOT_TOKEN}/getMe" 2>/dev/null || true)"
+printf '%s' "$BOT_CHECK" | grep -q '"ok":true' || { echo "Telegram bot token is invalid or unreachable." >&2; exit 1; }
+MODEL_HTTP="$(curl -sS --max-time 20 -o /dev/null -w '%{http_code}' -H "Authorization: Bearer ${API_KEY}" "https://wormgpt.app/v1/models" 2>/dev/null || true)"
+[ "$MODEL_HTTP" = "200" ] || { echo "WormGPT API key validation failed (HTTP ${MODEL_HTTP:-000})." >&2; exit 1; }
+ok "Inputs validated"
 
 # --- 3. Config (auto-generates the two tokens) -------------------------------
 c "[3/6] Writing config (auto-generating gateway + approval tokens)"
@@ -79,6 +85,7 @@ else
   WORMAGENT_TMPL="$ROOT/deploy/config/wormagent.json" \
   WORMAGENT_OUT="$STATE_DIR/wormagent.json" \
   WG_API_KEY="$API_KEY" WG_BOT_TOKEN="$BOT_TOKEN" WG_TG_ID="$TG_ID" WG_GW_TOKEN="$GW_TOKEN" \
+  WG_PORT="$PORT" WG_WORKSPACE="$STATE_DIR/workspace" \
   node <<'JS'
 const fs = require('fs');
 const c = JSON.parse(fs.readFileSync(process.env.WORMAGENT_TMPL, 'utf8'));
@@ -89,6 +96,7 @@ if (Array.isArray(t.allowFrom)) t.allowFrom = t.allowFrom.map(() => process.env.
 if (t.execApprovals?.approvers) t.execApprovals.approvers = t.execApprovals.approvers.map(() => process.env.WG_TG_ID);
 if (c.gateway?.auth && 'token' in c.gateway.auth) c.gateway.auth.token = process.env.WG_GW_TOKEN;
 for (const x of (c.approvals?.exec?.targets || [])) if ('to' in x) x.to = process.env.WG_TG_ID;
+for (const agent of (c.agents?.list || [])) agent.workspace = process.env.WG_WORKSPACE;
 c.gateway = { ...(c.gateway || {}), port: Number(process.env.WG_PORT || 18789) };
 fs.writeFileSync(process.env.WORMAGENT_OUT, JSON.stringify(c, null, 2) + '\n');
 JS
@@ -110,18 +118,26 @@ fs.writeFileSync(process.env.WORMAGENT_EA_OUT, JSON.stringify(e, null, 2) + '\n'
 JS
   ok "exec-approvals.json written (token auto-generated)"
 fi
+chmod 700 "$STATE_DIR"
+chmod 600 "$STATE_DIR/wormagent.json" "$STATE_DIR/exec-approvals.json"
 
 # --- 4. Install gateway + workspace ------------------------------------------
 c "[4/6] Installing the gateway + agent workspace"
 npm i -g "$ROOT" >/dev/null 2>&1 || npm i -g "$ROOT"
 mkdir -p "$STATE_DIR/workspace"
-cp -r "$ROOT"/agent/* "$STATE_DIR/workspace/"
+cp -r "$ROOT"/agent/. "$STATE_DIR/workspace/"
+# Fresh installs must not inherit a poisoned shared session from an older build.
+# Telegram DMs use per-channel-peer sessions in the generated config.
+if [ "$FORCE" -eq 1 ]; then
+  rm -rf "$STATE_DIR/agents/main/sessions" "$STATE_DIR/sessions"
+fi
 ok "Gateway installed · workspace at $STATE_DIR/workspace"
 
 # --- 5. systemd user service -------------------------------------------------
 c "[5/6] Installing + starting the service"
 mkdir -p "$SERVICE_DIR"
-cp "$ROOT/deploy/systemd/wormagent-gateway.service" "$SERVICE_DIR/"
+sed "s/^Environment=WORMAGENT_GATEWAY_PORT=.*/Environment=WORMAGENT_GATEWAY_PORT=${PORT}/" \
+  "$ROOT/deploy/systemd/wormagent-gateway.service" > "$SERVICE_DIR/wormagent-gateway.service"
 systemctl --user daemon-reload
 systemctl --user enable --now wormagent-gateway
 sleep 2

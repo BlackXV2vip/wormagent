@@ -51,12 +51,30 @@ make verify           # curl /health
 
 ## Install
 
-Runtime: **Node ≥22**
+Runtime: **Node ≥22.16**. The hosted installers configure Telegram, the two WormGPT agent models, and persistent startup automatically.
+
+### Linux, macOS, and Android/Termux
+
+```bash
+curl -fsSL https://wormagent.net/wormagent-install | bash
+```
+
+- Linux: systemd user service
+- macOS: LaunchAgent
+- Termux: background gateway with optional wake lock
+
+### Windows 10/11 (PowerShell)
+
+```powershell
+irm https://wormagent.net/wormagent-install.ps1 | iex
+```
+
+Windows uses a Scheduled Task with automatic restart.
+
+### Manual npm installation
 
 ```bash
 npm install -g wormagent@latest
-# or: pnpm add -g wormagent@latest
-
 wormagent onboard --install-daemon
 ```
 

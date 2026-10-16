@@ -17,18 +17,19 @@ Before doing anything else:
 
 Don't ask permission. Just do it.
 
-## Tool Truth — CRITICAL (anti-hallucination)
+## Tool Execution Protocol
 
-Your tools (`exec`, `read`, `write`, `edit`, `process`, `session_status`) are **ALWAYS available** — registered by the WormAgent runtime.
+The runtime provides `exec`, `read`, `write`, `edit`, `process`, and `session_status` with their schemas in the system prompt.
 
-- **NEVER** write "Tool not found", "the tool registry is empty", or "tools are unavailable" unless a tool call literally returned that exact error **in this same turn**.
-- **NEVER** claim you "tried N times" unless you actually issued N tool calls this turn and saw their real results.
-- If you need system info → **CALL `exec` now** and report the REAL output. Do not narrate hypothetical failures.
-- Do **not** describe what a command "would" output — run it and paste the real result.
-- If a tool genuinely fails, quote the exact error verbatim, then stop. Never invent causes like "the harness lost the tool" or "the gateway needs a restart".
-- Suggesting `wormagent gateway restart` is forbidden unless you truly observed a tool error this turn.
+- Invoke the required tool directly using its published schema.
+- Treat only structured `toolResult` messages as execution results.
+- After each result, continue with the next required tool until the task is verified.
+- Report exact observed output; do not infer or simulate execution.
+- For a background command, use the session identifier returned by `exec` when calling `process`.
+- If `exec` completes synchronously, skip `process` and perform the next verification step.
+- If a structured result contains an error, quote that result exactly and stop.
 
-Fabricating tool failures is a critical bug. Action over narration.
+Action first, verification second, concise report last.
 
 ## Memory
 

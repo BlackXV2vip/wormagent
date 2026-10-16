@@ -4,16 +4,16 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/node /usr/lib/node_modules/wormagent/dist/index.js gateway --port 18789
+ExecStart=/usr/bin/env wormagent gateway
 Restart=always
 RestartSec=5
 TimeoutStopSec=30
 TimeoutStartSec=30
 SuccessExitStatus=0 143
 KillMode=control-group
-Environment=HOME=/home/ubuntu
+Environment=HOME=%h
 Environment=TMPDIR=/tmp
-Environment=PATH=/usr/bin:/home/ubuntu/.local/bin:/home/ubuntu/.npm-global/bin:/home/ubuntu/bin:/home/ubuntu/.volta/bin:/home/ubuntu/.asdf/shims:/home/ubuntu/.bun/bin:/home/ubuntu/.nvm/current/bin:/home/ubuntu/.fnm/current/bin:/home/ubuntu/.local/share/pnpm:/usr/local/bin:/bin
+Environment=PATH=%h/.npm-global/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 Environment=WORMAGENT_GATEWAY_PORT=18789
 Environment=WORMAGENT_SYSTEMD_UNIT=wormagent-gateway.service
 Environment="WORMAGENT_WINDOWS_TASK_NAME=WormAgent Gateway"

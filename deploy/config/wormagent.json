@@ -33,7 +33,18 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "wormgpt/wormgpt-agent"
+        "primary": "wormgpt/wormgpt-agent",
+        "fallbacks": [
+          "wormgpt/agent-4960"
+        ]
+      },
+      "models": {
+        "wormgpt/wormgpt-agent": {
+          "alias": "WormAgent"
+        },
+        "wormgpt/agent-4960": {
+          "alias": "Agent 4960"
+        }
       }
     },
     "list": [
@@ -124,5 +135,8 @@
         }
       ]
     }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
   }
 }
