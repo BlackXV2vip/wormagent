@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "socket": {
+    "path": "/home/ubuntu/.wormagent/exec-approvals.sock",
+    "token": "<YOUR_EXEC_APPROVALS_TOKEN>"
+  },
+  "defaults": {
+    "security": "full",
+    "ask": "off",
+    "askFallback": "full",
+    "autoAllowSkills": true
+  },
+  "agents": {
+    "main": {
+      "security": "full",
+      "ask": "off",
+      "askFallback": "full",
+      "autoAllowSkills": true,
+      "allowlist": [
+        {
+          "pattern": "/usr/lib/cargo/bin/coreutils/echo",
+          "id": "12b79f3d-3411-481c-bdf3-633b1e32ccfc"
+        },
+        {
+          "pattern": "/usr/bin/echo",
+          "id": "a82053d2-2102-42d3-9285-37e99fb225cd",
+          "lastUsedAt": 1792096460693,
+          "lastUsedCommand": "echo WORMAGENT_OK",
+          "lastResolvedPath": "/usr/bin/echo"
+        },
+        {
+          "pattern": "/bin/echo",
+          "id": "48500b7b-58ed-4a4d-b22e-7cbf76d5a65c"
+        },
+        {
+          "id": "6d65f00b-2a98-4b7c-a551-7f4177e8eaf6",
+          "pattern": "/usr/bin/cat",
+          "lastUsedAt": 1792132310711,
+          "lastUsedCommand": "cat /home/ubuntu/.wormagent/workspace/HEARTBEAT.md",
+          "lastResolvedPath": "/usr/bin/cat"
+        },
+        {
+          "id": "f352bbb8-74f8-4cf5-856d-ab7428c24cce",
+          "pattern": "/usr/bin/ls",
+          "lastUsedAt": 1792066312674,
+          "lastUsedCommand": "ls -l /tmp/hoof_allow_proof && echo OK",
+          "lastResolvedPath": "/usr/bin/ls"
+        },
+        {
+          "id": "bdf9cd3d-1350-4062-9c72-12831f539857",
+          "pattern": "/usr/bin/uname",
+          "lastUsedAt": 1792076793084,
+          "lastUsedCommand": "uname -a && uptime && free -h",
+          "lastResolvedPath": "/usr/bin/uname"
+        }
+      ]
+    },
+    "dev": {
+      "security": "full",
+      "ask": "off",
+      "askFallback": "full",
+      "autoAllowSkills": true,
+      "allowlist": []
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "models": {
+    "providers": {
+      "wormgpt": {
+        "baseUrl": "https://wormgpt.app/v1",
+        "apiKey": "<YOUR_WORMGPT_API_KEY>",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "wormgpt-agent",
+            "name": "WormAgent",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 131072,
+            "maxTokens": 16000
+          },
+          {
+            "id": "agent-4960",
+            "name": "Agent 4960",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 131072,
+            "maxTokens": 16000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "wormgpt/wormgpt-agent"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "model": {
+          "primary": "wormgpt/wormgpt-agent"
+        },
+        "workspace": "/home/ubuntu/.wormagent/workspace"
+      },
+      {
+        "id": "dev",
+        "model": {
+          "primary": "wormgpt/agent-4960"
+        },
+        "workspace": "/home/ubuntu/.wormagent/workspace"
+      }
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "botToken": "<YOUR_TELEGRAM_BOT_TOKEN>",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "allowFrom": [
+        "<YOUR_TELEGRAM_USER_ID>"
+      ],
+      "execApprovals": {
+        "enabled": true,
+        "approvers": [
+          "<YOUR_TELEGRAM_USER_ID>"
+        ],
+        "target": "dm"
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "<YOUR_GATEWAY_TOKEN>"
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.3.19",
+    "lastTouchedAt": "2026-10-14T19:15:52.010Z"
+  },
+  "tools": {
+    "allow": [
+      "exec",
+      "process",
+      "read",
+      "write",
+      "edit",
+      "session_status"
+    ],
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    }
+  },
+  "approvals": {
+    "exec": {
+      "enabled": true,
+      "mode": "targets",
+      "agentFilter": [
+        "main"
+      ],
+      "targets": [
+        {
+          "channel": "telegram",
+          "to": "<YOUR_TELEGRAM_USER_ID>"
+        }
+      ]
+    }
+  }
+}
