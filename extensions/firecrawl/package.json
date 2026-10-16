@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/firecrawl-plugin",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Firecrawl plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

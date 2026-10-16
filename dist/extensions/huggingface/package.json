@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/huggingface-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Hugging Face provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/opencode-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent OpenCode Zen provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

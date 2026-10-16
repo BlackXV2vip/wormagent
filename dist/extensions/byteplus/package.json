@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/byteplus-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent BytePlus provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

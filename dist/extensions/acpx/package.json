@@ -1,0 +1,14 @@
+{
+  "name": "@wormagent/acpx",
+  "version": "2026.3.14",
+  "description": "WormAgent ACP runtime backend via acpx",
+  "type": "module",
+  "dependencies": {
+    "acpx": "0.3.0"
+  },
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/copilot-proxy",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Copilot Proxy provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

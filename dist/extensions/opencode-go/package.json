@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/opencode-go-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent OpenCode Go provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/openrouter-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent OpenRouter provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

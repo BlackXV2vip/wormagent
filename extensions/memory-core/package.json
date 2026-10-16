@@ -1,0 +1,20 @@
+{
+  "name": "@wormagent/memory-core",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent core memory search plugin",
+  "type": "module",
+  "peerDependencies": {
+    "wormagent": ">=2026.3.11"
+  },
+  "peerDependenciesMeta": {
+    "wormagent": {
+      "optional": true
+    }
+  },
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

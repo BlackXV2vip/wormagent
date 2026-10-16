@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/vllm-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent vLLM provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

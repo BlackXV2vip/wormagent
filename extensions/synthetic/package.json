@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/synthetic-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Synthetic provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

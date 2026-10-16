@@ -1,0 +1,13 @@
+{
+  "name": "@wormagent/imessage",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent iMessage channel plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ],
+    "setupEntry": "./setup-entry.js"
+  }
+}

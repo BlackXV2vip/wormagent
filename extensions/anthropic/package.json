@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/anthropic-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Anthropic provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

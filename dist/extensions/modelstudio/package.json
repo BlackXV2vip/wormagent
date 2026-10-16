@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/modelstudio-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Model Studio provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

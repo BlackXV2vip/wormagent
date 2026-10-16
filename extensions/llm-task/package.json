@@ -1,0 +1,16 @@
+{
+  "name": "@wormagent/llm-task",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent JSON-only LLM task plugin",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48",
+    "ajv": "^8.18.0"
+  },
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+import type { WormAgentConfig } from "../config/config.js";
+import type { SpeechProviderPlugin } from "../plugins/types.js";
+import type { SpeechProviderId } from "./provider-types.js";
+export declare function normalizeSpeechProviderId(providerId: string | undefined): SpeechProviderId | undefined;
+export declare function listSpeechProviders(cfg?: WormAgentConfig): SpeechProviderPlugin[];
+export declare function getSpeechProvider(providerId: string | undefined, cfg?: WormAgentConfig): SpeechProviderPlugin | undefined;

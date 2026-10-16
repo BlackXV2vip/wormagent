@@ -1,0 +1,10 @@
+import type { WormAgentConfig } from "../config/config.js";
+import { AcpRuntimeError } from "./runtime/errors.js";
+export type AcpDispatchPolicyState = "enabled" | "acp_disabled" | "dispatch_disabled";
+export declare function isAcpEnabledByPolicy(cfg: WormAgentConfig): boolean;
+export declare function resolveAcpDispatchPolicyState(cfg: WormAgentConfig): AcpDispatchPolicyState;
+export declare function isAcpDispatchEnabledByPolicy(cfg: WormAgentConfig): boolean;
+export declare function resolveAcpDispatchPolicyMessage(cfg: WormAgentConfig): string | null;
+export declare function resolveAcpDispatchPolicyError(cfg: WormAgentConfig): AcpRuntimeError | null;
+export declare function isAcpAgentAllowedByPolicy(cfg: WormAgentConfig, agentId: string): boolean;
+export declare function resolveAcpAgentPolicyError(cfg: WormAgentConfig, agentId: string): AcpRuntimeError | null;

@@ -1,0 +1,13 @@
+{
+  "name": "@wormagent/signal",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Signal channel plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "setupEntry": "./setup-entry.ts"
+  }
+}

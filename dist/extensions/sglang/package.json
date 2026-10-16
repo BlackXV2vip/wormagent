@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/sglang-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent SGLang provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

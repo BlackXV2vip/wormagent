@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/chutes-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Chutes.ai provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+import type { WormAgentConfig } from "wormagent/plugin-sdk/config-runtime";
+import type { BackoffPolicy } from "wormagent/plugin-sdk/infra-runtime";
+import { type RuntimeEnv } from "wormagent/plugin-sdk/runtime-env";
+export type MonitorSignalOpts = {
+    runtime?: RuntimeEnv;
+    abortSignal?: AbortSignal;
+    account?: string;
+    accountId?: string;
+    config?: WormAgentConfig;
+    baseUrl?: string;
+    autoStart?: boolean;
+    startupTimeoutMs?: number;
+    cliPath?: string;
+    httpHost?: string;
+    httpPort?: number;
+    receiveMode?: "on-start" | "manual";
+    ignoreAttachments?: boolean;
+    ignoreStories?: boolean;
+    sendReadReceipts?: boolean;
+    allowFrom?: Array<string | number>;
+    groupAllowFrom?: Array<string | number>;
+    mediaMaxMb?: number;
+    reconnectPolicy?: Partial<BackoffPolicy>;
+};
+export declare function monitorSignalProvider(opts?: MonitorSignalOpts): Promise<void>;

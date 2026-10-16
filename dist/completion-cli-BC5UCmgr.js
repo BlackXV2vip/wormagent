@@ -1,0 +1,17 @@
+import "./logger-XBPi1AwR.js";
+import "./paths-C7DNYmnN.js";
+import "./tmp-wormagent-dir-DiDbPUEX.js";
+import "./theme-CLg7QWJt.js";
+import "./globals-B9nPdA7s.js";
+import "./runtime-BNNetENg.js";
+import "./ansi-cwY8Vrne.js";
+import "./subsystem-DFHXIqzU.js";
+import "./boolean-BgLJTske.js";
+import "./env-Be02FVK-.js";
+import "./utils-1TVTmhOV.js";
+import "./links-B85QumIb.js";
+import { a as registerCompletionCli } from "./completion-cli-BRGI0ad_.js";
+import "./register.subclis-DTvE_x5R.js";
+import "./command-registry-a_0KkLDf.js";
+import "./program-context-BSzUSqwT.js";
+export { registerCompletionCli };

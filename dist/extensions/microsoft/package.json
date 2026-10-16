@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/microsoft-speech",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Microsoft speech plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

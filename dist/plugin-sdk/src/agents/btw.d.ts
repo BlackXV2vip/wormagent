@@ -1,0 +1,24 @@
+import type { ReasoningLevel, ThinkLevel } from "../auto-reply/thinking.js";
+import type { GetReplyOptions, ReplyPayload } from "../auto-reply/types.js";
+import type { WormAgentConfig } from "../config/config.js";
+import { type SessionEntry } from "../config/sessions.js";
+import { type BlockReplyChunking } from "./pi-embedded-block-chunker.js";
+type RunBtwSideQuestionParams = {
+    cfg: WormAgentConfig;
+    agentDir: string;
+    provider: string;
+    model: string;
+    question: string;
+    sessionEntry: SessionEntry;
+    sessionStore?: Record<string, SessionEntry>;
+    sessionKey?: string;
+    storePath?: string;
+    resolvedThinkLevel?: ThinkLevel;
+    resolvedReasoningLevel: ReasoningLevel;
+    blockReplyChunking?: BlockReplyChunking;
+    resolvedBlockStreamingBreak?: "text_end" | "message_end";
+    opts?: GetReplyOptions;
+    isNewSession: boolean;
+};
+export declare function runBtwSideQuestion(params: RunBtwSideQuestionParams): Promise<ReplyPayload | undefined>;
+export {};

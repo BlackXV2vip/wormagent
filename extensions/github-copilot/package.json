@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/github-copilot-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent GitHub Copilot provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

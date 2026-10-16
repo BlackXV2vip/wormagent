@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/amazon-bedrock-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Amazon Bedrock provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

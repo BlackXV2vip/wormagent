@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/fal-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent fal provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

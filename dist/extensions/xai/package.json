@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/xai-plugin",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent xAI plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

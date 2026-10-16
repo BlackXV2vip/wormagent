@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/qianfan-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Qianfan provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

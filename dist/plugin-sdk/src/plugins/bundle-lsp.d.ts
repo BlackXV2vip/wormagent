@@ -1,0 +1,27 @@
+import type { WormAgentConfig } from "../config/config.js";
+import type { PluginBundleFormat } from "./types.js";
+export type BundleLspServerConfig = Record<string, unknown>;
+export type BundleLspConfig = {
+    lspServers: Record<string, BundleLspServerConfig>;
+};
+export type BundleLspRuntimeSupport = {
+    hasStdioServer: boolean;
+    supportedServerNames: string[];
+    unsupportedServerNames: string[];
+    diagnostics: string[];
+};
+export declare function inspectBundleLspRuntimeSupport(params: {
+    pluginId: string;
+    rootDir: string;
+    bundleFormat: PluginBundleFormat;
+}): BundleLspRuntimeSupport;
+export declare function loadEnabledBundleLspConfig(params: {
+    workspaceDir: string;
+    cfg?: WormAgentConfig;
+}): {
+    config: BundleLspConfig;
+    diagnostics: Array<{
+        pluginId: string;
+        message: string;
+    }>;
+};

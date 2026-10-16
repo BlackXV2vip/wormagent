@@ -1,0 +1,15 @@
+{
+  "name": "@wormagent/discord",
+  "version": "2026.3.14",
+  "description": "WormAgent Discord channel plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ],
+    "setupEntry": "./setup-entry.js",
+    "release": {
+      "publishToNpm": true
+    }
+  }
+}

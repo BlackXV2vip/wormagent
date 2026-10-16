@@ -1,0 +1,15 @@
+{
+  "name": "@wormagent/irc",
+  "version": "2026.3.14",
+  "description": "WormAgent IRC channel plugin",
+  "type": "module",
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "setupEntry": "./setup-entry.ts"
+  }
+}

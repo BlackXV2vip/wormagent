@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/openshell-sandbox",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent OpenShell sandbox backend",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

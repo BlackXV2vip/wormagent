@@ -1,0 +1,12 @@
+{
+  "name": "@wormagent/cloudflare-ai-gateway-provider",
+  "version": "2026.3.14",
+  "private": true,
+  "description": "WormAgent Cloudflare AI Gateway provider plugin",
+  "type": "module",
+  "wormagent": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

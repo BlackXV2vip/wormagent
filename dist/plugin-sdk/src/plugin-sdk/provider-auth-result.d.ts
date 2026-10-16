@@ -1,0 +1,15 @@
+import type { WormAgentConfig } from "../config/config.js";
+import type { ProviderAuthResult } from "../plugins/types.js";
+/** Build the standard auth result payload for OAuth-style provider login flows. */
+export declare function buildOauthProviderAuthResult(params: {
+    providerId: string;
+    defaultModel: string;
+    access: string;
+    refresh?: string | null;
+    expires?: number | null;
+    email?: string | null;
+    profilePrefix?: string;
+    credentialExtra?: Record<string, unknown>;
+    configPatch?: Partial<WormAgentConfig>;
+    notes?: string[];
+}): ProviderAuthResult;
