@@ -60,31 +60,33 @@ wormagent --version
 
 ---
 
-## 3) الإعداد (حقوق الأسرار `REQUIRED`)
+## 3) الإعداد — **3 مدخلات بس، والباقي تلقائي** ✅
 
-انسخ قوالب الإعداد ثم **املا كل قيمة مكتوب عليها `REQUIRED`**:
+المطلوب منك **3 حاجات** بس:
 
+| # | الحقل | من فين |
+|---|---|---|
+| 1 | مفتاح المزوّد `apiKey` | لوحة المزوّد |
+| 2 | توكن البوت `botToken` | [@BotFather](https://t.me/BotFather) → `/newbot` |
+| 3 | آيديك الرقمي `allowFrom` | [@userinfobot](https://t.me/userinfobot) |
+
+والسكربت **بيولّد تلقائيًا**: `gateway.auth.token` · توكن سوكت الموافقات · كل باقي القيم.
+
+```bash
+make setup
+# أو مباشرة:
+bash scripts/install.sh --api-key KEY --bot-token TOKEN --telegram-id 123456789
+```
+> **غير تفاعلي:** `WORMAGENT_API_KEY` · `WORMAGENT_BOT_TOKEN` · `WORMAGENT_TELEGRAM_ID`
+
+**طريقة يدوية** (لو عايز تملأ بنفسك):
 ```bash
 mkdir -p ~/.wormagent
 cp deploy/config/wormagent.json      ~/.wormagent/wormagent.json
 cp deploy/config/exec-approvals.json ~/.wormagent/exec-approvals.json
+# استبدل كل قيمة مكتوب عليها REQUIRED
 ```
-
-| الملف | الحقل | لازم يكون |
-|---|---|---|
-| `wormagent.json` | `models.providers.wormgpt.apiKey` | مفتاح الـ API |
-| `wormagent.json` | `channels.telegram.botToken` | توكن البوت (@BotFather) |
-| `wormagent.json` | `channels.telegram.allowFrom[0]` | آيدي تيليجرام الرقمي بتاعك |
-| `wormagent.json` | `channels.telegram.execApprovals.approvers[0]` | آيدي المسؤول عن الموافقة |
-| `wormagent.json` | `gateway.auth.token` | نص عشوائي طويل |
-| `wormagent.json` | `approvals.exec.targets[0].to` | آيدي المستلم للموافقات |
-| `exec-approvals.json` | `socket.token` | نص عشوائي طويل |
-
-> **بديل:** معالج تفاعلي:
-> ```bash
-> wormagent configure      # أو: wormagent setup   /   wormagent onboard
-> ```
-> تحقق من الإعداد: `wormagent config validate`
+يدوي/تفاعلي: `wormagent configure` · تحقق: `wormagent config validate`
 
 لتجربة معزولة بدون لمس الإنتاج:
 ```bash

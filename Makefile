@@ -9,11 +9,14 @@ PKG_ROOT     := $(shell npm root -g 2>/dev/null)/wormagent
 SERVICE_DIR  := $(HOME)/.config/systemd/user
 STATE_DIR    := $(HOME)/.wormagent
 
-.PHONY: help install config workspace service-install run verify status logs restart stop update backup uninstall
+.PHONY: help setup install config workspace service-install run verify status logs restart stop update backup uninstall
 
 help: ## Show available targets
 > @echo "WormAgent — make targets:"
 > @grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-16s\033[0m %s\n",$$1,$$2}'
+
+setup: ## Full install — asks for 3 inputs, auto-generates the rest, starts the bot
+> bash scripts/install.sh
 
 install: ## Install the gateway globally (npm)
 > npm i -g wormagent

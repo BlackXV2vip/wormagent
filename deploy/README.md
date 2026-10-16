@@ -12,19 +12,29 @@ a systemd user service plus its `~/.wormagent` runtime.
 | `config/exec-approvals.json` | exec-approval socket config — token `REQUIRED` |
 | `../agent/` | the live agent workspace (persona, tools, memory) |
 
-## Required values (fill these before running)
+## First install — only **3 inputs**
 
-| File | Field | What to put |
+The installer (`make setup` or `bash scripts/install.sh`) asks for these three:
+
+| # | Field | What to put |
 |---|---|---|
-| `config/wormagent.json` | `models.providers.wormgpt.apiKey` | your **API key** |
-| `config/wormagent.json` | `channels.telegram.botToken` | **Telegram bot token** (from @BotFather) |
-| `config/wormagent.json` | `channels.telegram.allowFrom[0]` | your **Telegram numeric user id** |
-| `config/wormagent.json` | `channels.telegram.execApprovals.approvers[0]` | Telegram id allowed to approve exec |
-| `config/wormagent.json` | `gateway.auth.token` | random long string (gateway auth) |
-| `config/wormagent.json` | `approvals.exec.targets[0].to` | Telegram id that receives exec approvals |
-| `config/exec-approvals.json` | `socket.token` | random long string (approval socket) |
+| 1 | API key | your provider key |
+| 2 | Telegram bot token | from [@BotFather](https://t.me/BotFather) |
+| 3 | Telegram user id | your numeric id ([@userinfobot](https://t.me/userinfobot)) |
 
-Every value marked `REQUIRED: ...` must be replaced with a real value.
+**Everything else is generated automatically:**
+- `gateway.auth.token` — random
+- `exec-approvals.json` `socket.token` — random
+- config wiring (allowFrom, approvers, targets), workspace, service, port
+
+Non-interactive:
+```bash
+WORMAGENT_API_KEY=… WORMAGENT_BOT_TOKEN=… WORMAGENT_TELEGRAM_ID=… bash scripts/install.sh
+```
+
+### Manual alternative
+Copy `config/wormagent.json` + `config/exec-approvals.json` and replace every
+value marked `REQUIRED: ...` with a real value.
 
 ## Requirements
 
