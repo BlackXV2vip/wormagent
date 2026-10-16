@@ -3,7 +3,7 @@
     "providers": {
       "wormgpt": {
         "baseUrl": "https://wormgpt.app/v1",
-        "apiKey": "<YOUR_WORMGPT_API_KEY>",
+        "apiKey": "REQUIRED: your WormGPT API key",
         "api": "openai-completions",
         "models": [
           {
@@ -63,7 +63,7 @@
     "telegram": {
       "enabled": true,
       "dmPolicy": "allowlist",
-      "botToken": "<YOUR_TELEGRAM_BOT_TOKEN>",
+      "botToken": "REQUIRED: Telegram bot token from @BotFather",
       "groups": {
         "*": {
           "requireMention": true
@@ -72,12 +72,12 @@
       "groupPolicy": "allowlist",
       "streaming": "partial",
       "allowFrom": [
-        "<YOUR_TELEGRAM_USER_ID>"
+        "REQUIRED: your Telegram numeric user id"
       ],
       "execApprovals": {
         "enabled": true,
         "approvers": [
-          "<YOUR_TELEGRAM_USER_ID>"
+          "REQUIRED: your Telegram numeric user id"
         ],
         "target": "dm"
       }
@@ -88,7 +88,7 @@
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "<YOUR_GATEWAY_TOKEN>"
+      "token": "REQUIRED: random long string (gateway auth)"
     }
   },
   "meta": {
@@ -120,7 +120,7 @@
       "targets": [
         {
           "channel": "telegram",
-          "to": "<YOUR_TELEGRAM_USER_ID>"
+          "to": "REQUIRED: your Telegram numeric user id"
         }
       ]
     }

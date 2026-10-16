@@ -2,7 +2,7 @@
   "version": 1,
   "socket": {
     "path": "/home/ubuntu/.wormagent/exec-approvals.sock",
-    "token": "<YOUR_EXEC_APPROVALS_TOKEN>"
+    "token": "REQUIRED: random long string (approval socket)"
   },
   "defaults": {
     "security": "full",
